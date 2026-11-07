@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(31, 41, 55, 0.12);
+    }
+    h1 { margin: 0 0 8px; text-align: center; }
+    .subtitle { margin: 0 0 26px; text-align: center; color: #6b7280; }
+    label { display: block; margin: 16px 0 7px; font-weight: 600; }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    input:focus { outline: 2px solid #818cf8; border-color: transparent; }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: #4f46e5;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: #4338ca; }
+    #message { margin-top: 16px; text-align: center; color: #4b5563; }
+    footer { margin-top: 24px; text-align: center; color: #9ca3af; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Welcome</h1>
+    <p class="subtitle">Sign in to your website</p>
+
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+      <button type="submit">Sign In</button>
+      <p id="message" role="status"></p>
+    </form>
+
+    <footer>My Website &copy; 2026</footer>
+  </main>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      document.getElementById("message").textContent =
+        "This is a front-end demo. Connect it to a secure server to enable real login.";
+    });
+  </script>
+</body>
+</html>
