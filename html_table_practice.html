@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Table Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f4f7fb;
+      color: #222;
+    }
+    h1 { text-align: center; }
+    p { text-align: center; }
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 24px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    caption {
+      font-weight: bold;
+      padding: 10px;
+    }
+    th, td {
+      border: 1px solid #777;
+      padding: 12px;
+      text-align: left;
+    }
+    th { background: #dce8f5; }
+    tr:nth-child(even) { background: #f2f2f2; }
+    tfoot { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>HTML Table Practice</h1>
+  <p>Practice using the <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>,
+     <code>&lt;th&gt;</code>, and <code>&lt;td&gt;</code> tags.</p>
+
+  <table>
+    <caption>Student Marks</caption>
+    <thead>
+      <tr>
+        <th scope="col">Student ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>Riya</td>
+        <td>HTML</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td>Arjun</td>
+        <td>CSS</td>
+        <td>85</td>
+      </tr>
+      <tr>
+        <td>103</td>
+        <td>Mina</td>
+        <td>JavaScript</td>
+        <td>88</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Average Marks</td>
+        <td>87.7</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Practice:
+       1. Add another student row.
+       2. Change one student's marks.
+       3. Add a new column called Grade.
+       4. Try using colspan or rowspan.
+  -->
+</body>
+</html>
