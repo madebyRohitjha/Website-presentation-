@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Marks Table</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f7fb; color: #222; }
+    h1, p { text-align: center; }
+    table { width: 100%; max-width: 900px; margin: 24px auto; border-collapse: collapse; background: white; border-radius: 10px; }
+    th, td { border: 1px solid #777; padding: 12px; text-align: left; }
+    th { background: #dce8f5; }
+    tbody tr:nth-child(even) { background: #f2f2f2; }
+    tfoot { font-weight: bold; background: #e8eef5; }
+  </style>
+</head>
+<body>
+  <h1>Student Marks Table</h1>
+  <p>An HTML table practice project with Grade and Result columns.</p>
+  <table>
+    <caption>Class Results</caption>
+    <thead>
+      <tr>
+        <th scope="col">Student ID</th><th scope="col">Name</th><th scope="col">Subject</th>
+        <th scope="col">Marks</th><th scope="col">Grade</th><th scope="col">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>101</td><td>Riya</td><td>HTML</td><td>90</td><td>A</td><td>Pass</td></tr>
+      <tr><td>102</td><td>Arjun</td><td>CSS</td><td>85</td><td>B</td><td>Pass</td></tr>
+      <tr><td>103</td><td>Mina</td><td>JavaScript</td><td>88</td><td>B</td><td>Pass</td></tr>
+      <tr><td>104</td><td>Kiran</td><td>HTML</td><td>72</td><td>C</td><td>Pass</td></tr>
+      <tr><td>105</td><td>Sam</td><td>CSS</td><td>45</td><td>F</td><td>Fail</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3">Average Marks</td><td>76</td><td colspan="2">Class Result</td></tr>
+    </tfoot>
+  </table>
+  <!-- Practice: Add another student, edit marks, and try using rowspan. -->
+</body>
+</html>
