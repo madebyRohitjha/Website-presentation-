@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login & Registration</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      padding: 24px; font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: linear-gradient(135deg, #101827, #263b60); color: #172033;
+    }
+    .panel {
+      width: min(100%, 420px); background: #fff; border-radius: 22px;
+      padding: 30px; box-shadow: 0 22px 70px #0005;
+    }
+    .brand { text-align: center; margin-bottom: 24px; }
+    .brand .mark {
+      width: 52px; height: 52px; margin: 0 auto 12px; border-radius: 16px;
+      display: grid; place-items: center; color: white; font-size: 25px;
+      background: linear-gradient(135deg, #526df5, #8c5cf6);
+    }
+    h1 { margin: 0; font-size: 25px; }
+    .sub { margin: 7px 0 0; color: #687386; font-size: 14px; }
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px;
+      background: #f0f2f7; border-radius: 12px; margin: 24px 0; }
+    .tabs button {
+      border: 0; border-radius: 9px; padding: 11px; background: transparent;
+      color: #657087; font-weight: 650; cursor: pointer;
+    }
+    .tabs button.active { background: white; color: #334bdc; box-shadow: 0 2px 8px #17203312; }
+    label { display: block; margin: 15px 0 7px; font-size: 13px; font-weight: 650; }
+    input {
+      width: 100%; padding: 13px 14px; border: 1px solid #dce1eb; border-radius: 10px;
+      font: inherit; outline: none; transition: border .2s, box-shadow .2s;
+    }
+    input:focus { border-color: #6478f4; box-shadow: 0 0 0 3px #6478f422; }
+    .submit {
+      width: 100%; margin-top: 22px; padding: 14px; border: 0; border-radius: 11px;
+      color: white; background: #4e62e8; font-size: 15px; font-weight: 700; cursor: pointer;
+    }
+    .submit:hover { background: #3d50d4; }
+    .helper { text-align: center; margin: 17px 0 0; color: #758096; font-size: 12px; line-height: 1.5; }
+    .message { display: none; margin-top: 14px; padding: 11px; border-radius: 9px;
+      background: #eef8f1; color: #21683a; font-size: 13px; }
+    .hidden { display: none; }
+    @media (max-width: 420px) { .panel { padding: 24px 20px; } }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <header class="brand">
+      <div class="mark" aria-hidden="true">✦</div>
+      <h1>Welcome</h1>
+      <p class="sub">Sign in or create your account</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Account options">
+      <button id="loginTab" class="active" type="button" role="tab" aria-selected="true">Login</button>
+      <button id="registerTab" type="button" role="tab" aria-selected="false">Register</button>
+    </div>
+
+    <form id="accountForm">
+      <div id="nameField" class="hidden">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="Your full name">
+      </div>
+
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password"
+             placeholder="At least 8 characters" minlength="8" required>
+
+      <div id="confirmField" class="hidden">
+        <label for="confirm">Confirm password</label>
+        <input id="confirm" name="confirm" type="password" autocomplete="new-password"
+               placeholder="Enter your password again" minlength="8">
+      </div>
+
+      <button class="submit" id="submitButton" type="submit">Login</button>
+      <div class="message" id="message" role="status"></div>
+    </form>
+    <p class="helper">Demo interface only. It does not create accounts or send credentials to a server.</p>
+  </main>
+
+  <script>
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    const nameField = document.getElementById('nameField');
+    const confirmField = document.getElementById('confirmField');
+    const nameInput = document.getElementById('name');
+    const confirmInput = document.getElementById('confirm');
+    const passwordInput = document.getElementById('password');
+    const submitButton = document.getElementById('submitButton');
+    const message = document.getElementById('message');
+    const form = document.getElementById('accountForm');
+    let mode = 'login';
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      const registering = mode === 'register';
+      nameField.classList.toggle('hidden', !registering);
+      confirmField.classList.toggle('hidden', !registering);
+      nameInput.required = registering;
+      confirmInput.required = registering;
+      passwordInput.autocomplete = registering ? 'new-password' : 'current-password';
+      submitButton.textContent = registering ? 'Create account' : 'Login';
+      loginTab.classList.toggle('active', !registering);
+      registerTab.classList.toggle('active', registering);
+      loginTab.setAttribute('aria-selected', String(!registering));
+      registerTab.setAttribute('aria-selected', String(registering));
+      message.style.display = 'none';
+    }
+
+    loginTab.addEventListener('click', () => setMode('login'));
+    registerTab.addEventListener('click', () => setMode('register'));
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (mode === 'register' && passwordInput.value !== confirmInput.value) {
+        message.textContent = 'Your passwords do not match.';
+        message.style.display = 'block';
+        message.style.background = '#fff1f0';
+        message.style.color = '#a12b25';
+        confirmInput.focus();
+        return;
+      }
+      message.textContent = mode === 'register'
+        ? 'Demo only: connect a secure backend to register users.'
+        : 'Demo only: connect a secure backend to sign users in.';
+      message.style.display = 'block';
+      message.style.background = '#eef8f1';
+      message.style.color = '#21683a';
+    });
+  </script>
+</body>
+</html>
